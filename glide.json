@@ -1,13 +1,24 @@
 [
 	{
 		"kind": "column",
-		"name": "Glide Plugin Starter",
-		"description": "This is a starter plugin for Glide. It allows you to pass a string to a function and return a string.",
+		"name": "Glide Plugin Starter with AI",
+		"description": "This plugin allows you to pass a prompt and optionally generate a response using OpenRouter's free Google model.",
 		"author": "Marco Volpato <marco@loqode.com>",
 		"params": [
 			{
-				"name": "string",
-				"displayName": "String",
+				"name": "prompt",
+				"displayName": "Prompt",
+				"type": "string"
+			},
+			{
+				"name": "use_openrouter",
+				"displayName": "Use OpenRouter AI",
+				"type": "boolean",
+				"default": false
+			},
+			{
+				"name": "openrouter_api_key",
+				"displayName": "OpenRouter API Key",
 				"type": "string"
 			}
 		],
