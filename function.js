@@ -1,28 +1,40 @@
 window.function = async function (prompt, image_url, use_openrouter, openrouter_api_key) {
 	if (use_openrouter && openrouter_api_key) {
-		// Build the content array for the message
-		const content = [];
+		// Build the content for the message
+		let messageContent;
 		
 		// Add text prompt if provided
 		if (prompt && prompt.value) {
-			content.push({
-				type: 'text',
-				text: prompt.value
-			});
-		}
-		
-		// Add image if provided (supports URL or base64 data URI)
-		if (image_url && image_url.value) {
-			content.push({
-				type: 'image_url',
-				image_url: {
-					url: image_url.value
+			// If no image provided, use simple string content for text-only models
+			if (!image_url || !image_url.value) {
+				messageContent = prompt.value;
+			} else {
+				// Use array format for multimodal content
+				messageContent = [
+					{
+						type: 'text',
+						text: prompt.value
+					},
+					{
+						type: 'image_url',
+						image_url: {
+							url: image_url.value
+						}
+					}
+				];
+			}
+		} else if (image_url && image_url.value) {
+			// Image only - use array format
+			messageContent = [
+				{
+					type: 'image_url',
+					image_url: {
+						url: image_url.value
+					}
 				}
-			});
-		}
-		
-		// If no content provided, return error
-		if (content.length === 0) {
+			];
+		} else {
+			// If no content provided, return error
 			throw new Error('Please provide either a prompt or an image URL');
 		}
 		
@@ -33,11 +45,12 @@ window.function = async function (prompt, image_url, use_openrouter, openrouter_
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				model: 'qwen/qwen2.5-vl-32b-instruct:free',
+				model: 'qwen/qwen2.5-vl-72b-instruct:free',
+				max_tokens: 1000,
 				messages: [
 					{ 
 						role: 'user', 
-						content: content 
+						content: messageContent 
 					}
 				],
 			}),
