@@ -2,13 +2,19 @@
 	{
 		"kind": "column",
 		"name": "Glide Plugin Starter with AI",
-		"description": "This plugin allows you to pass a prompt and optionally generate a response using OpenRouter's free Google model.",
+		"description": "This plugin allows you to pass a prompt and image URL to generate responses using OpenRouter's moonshotai/kimi-vl-a3b-thinking vision model.",
 		"author": "Marco Volpato <marco@loqode.com>",
 		"params": [
 			{
 				"name": "prompt",
 				"displayName": "Prompt",
 				"type": "string"
+			},
+			{
+				"name": "image_url",
+				"displayName": "Image URL",
+				"type": "string",
+				"description": "URL to an image or base64 data URI for analysis"
 			},
 			{
 				"name": "use_openrouter",
