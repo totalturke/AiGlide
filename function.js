@@ -49,6 +49,19 @@ window.function = async function (prompt, image_url, use_openrouter, openrouter_
 		}
 		
 		const data = await response.json();
+		
+		// Debug logging
+		console.log('API Response:', JSON.stringify(data, null, 2));
+		
+		// Check if response has expected structure
+		if (!data.choices || !Array.isArray(data.choices) || data.choices.length === 0) {
+			throw new Error(`Invalid API response structure. Response: ${JSON.stringify(data)}`);
+		}
+		
+		if (!data.choices[0].message || !data.choices[0].message.content) {
+			throw new Error(`Invalid message structure in API response. Response: ${JSON.stringify(data)}`);
+		}
+		
 		return data.choices[0].message.content;
 	} else {
 		return prompt ? prompt.value : 'No input provided';
