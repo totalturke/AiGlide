@@ -33,7 +33,7 @@ window.function = async function (prompt, image_url, use_openrouter, openrouter_
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				model: 'moonshotai/kimi-vl-a3b-thinking:free',
+				model: 'qwen/qwen2.5-vl-32b-instruct:free',
 				messages: [
 					{ 
 						role: 'user', 
