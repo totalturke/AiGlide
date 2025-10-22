@@ -63,9 +63,6 @@ window.function = async function (prompt, image_url, use_openrouter, openrouter_
 		
 		const data = await response.json();
 		
-		// Debug logging
-		console.log('API Response:', JSON.stringify(data, null, 2));
-		
 		// Check if response has expected structure
 		if (!data.choices || !Array.isArray(data.choices) || data.choices.length === 0) {
 			throw new Error(`Invalid API response structure. Response: ${JSON.stringify(data)}`);
