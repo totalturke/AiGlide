@@ -2,7 +2,7 @@
 	{
 		"kind": "column",
 		"name": "Glide Plugin Starter with AI",
-		"description": "This plugin allows you to pass a prompt and image URL to generate responses using OpenRouter's Llama 3.2 Vision model.",
+		"description": "This plugin allows you to pass a prompt and optionally an image URL to generate responses using configurable OpenRouter AI models.",
 		"author": "Marco Volpato <marco@loqode.com>",
 		"params": [
 			{
@@ -15,6 +15,13 @@
 				"displayName": "Image URL",
 				"type": "string",
 				"description": "URL to an image or base64 data URI for analysis"
+			},
+			{
+				"name": "model",
+				"displayName": "AI Model",
+				"type": "string",
+				"default": "google/gemma-3-27b-it:free",
+				"description": "OpenRouter model to use (e.g., google/gemma-3-27b-it:free, meta-llama/llama-3.2-11b-vision-instruct:free)"
 			},
 			{
 				"name": "use_openrouter",

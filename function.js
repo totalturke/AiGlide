@@ -1,4 +1,4 @@
-window.function = async function (prompt, image_url, use_openrouter, openrouter_api_key) {
+window.function = async function (prompt, image_url, model, use_openrouter, openrouter_api_key) {
 	if (use_openrouter && openrouter_api_key) {
 		// Build the content for the message
 		let messageContent;
@@ -45,7 +45,7 @@ window.function = async function (prompt, image_url, use_openrouter, openrouter_
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				model: 'meta-llama/llama-3.2-11b-vision-instruct:free',
+				model: (model && model.value) || 'google/gemma-3-27b-it:free',
 				max_tokens: 1000,
 				messages: [
 					{ 
